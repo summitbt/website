@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= "english"; // Is overridden in hooks/pick_language.php
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = TRUE;
+$config['enable_hooks'] = FALSE;
 
 
 /*
@@ -176,15 +176,11 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 |	3 = Informational Messages
 |	4 = All Messages
 |
-| You can also pass in a array with threshold levels to show individual error types
-| 
-| 	array(2) = Debug Messages, without Error Messages
-|
 | For a live site you'll usually only enable Errors (1) to be logged otherwise
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -192,7 +188,7 @@ $config['log_threshold'] = 1;
 |--------------------------------------------------------------------------
 |
 | Leave this BLANK unless you would like to set something other than the default
-| system/cms/logs/ folder. Use a full server path with trailing slash.
+| application/logs/ folder. Use a full server path with trailing slash.
 |
 */
 $config['log_path'] = '';
@@ -217,8 +213,6 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 | system/cache/ folder.  Use a full server path with trailing slash.
 |
 */
-
-// This is set in the pyrocache config so Pro can set the correct SITE_REF
 $config['cache_path'] = '';
 
 /*
@@ -230,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = "Jiu348^&H%fa";
+$config['encryption_key'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -250,14 +244,13 @@ $config['encryption_key'] = "Jiu348^&H%fa";
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']		= 'pyrocms' . (ENVIRONMENT !== 'production' ? '_' . ENVIRONMENT : '');
-$config['sess_expiration']		= 0;
-$config['sess_expire_on_close']	= TRUE;
-$config['sess_encrypt_cookie']	= TRUE;
-$config['sess_use_database']	= TRUE;
-// don't change anything but the 'ci_sessions' part of this. The MSM depends on the 'default_' prefix
-$config['sess_table_name']		= 'default_ci_sessions';
-$config['sess_match_ip']		= TRUE;
+$config['sess_cookie_name']		= 'ci_session';
+$config['sess_expiration']		= 7200;
+$config['sess_expire_on_close']	= FALSE;
+$config['sess_encrypt_cookie']	= FALSE;
+$config['sess_use_database']	= FALSE;
+$config['sess_table_name']		= 'ci_sessions';
+$config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
 
@@ -273,8 +266,8 @@ $config['sess_time_to_update']	= 300;
 |
 */
 $config['cookie_prefix']	= "";
-$config['cookie_domain']	= ($_SERVER['SERVER_NAME'] == 'localhost') ? '' : $_SERVER['SERVER_NAME'];
-$config['cookie_path']		= BASE_URI;
+$config['cookie_domain']	= "";
+$config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
 
 /*
@@ -299,13 +292,11 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_token_name' = The token name
 | 'csrf_cookie_name' = The cookie name
 | 'csrf_expire' = The number in seconds the token should expire.
-| 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
 $config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
-$config['csrf_exclude_uris'] = array();
 
 /*
 |--------------------------------------------------------------------------
@@ -337,7 +328,7 @@ $config['compress_output'] = FALSE;
 | regarding date handling.
 |
 */
-$config['time_reference'] = 'gmt';
+$config['time_reference'] = 'local';
 
 
 /*
@@ -367,18 +358,5 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
-/*
-|--------------------------------------------------------------------------
-| Module Locations
-|--------------------------------------------------------------------------
-|
-| Modular Extensions: Where are modules located?
-|
-*/
-$config['modules_locations'] = array(
-	APPPATH.'modules/' => '../modules/',
-	ADDON_FOLDER.'default/modules/' => '../../../addons/default/modules/',
-	SHARED_ADDONPATH.'modules/' => '../../../addons/shared_addons/modules/'
-);
-
 /* End of file config.php */
+/* Location: ./application/config/config.php */
