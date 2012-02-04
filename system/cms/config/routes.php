@@ -51,7 +51,10 @@ $route['register'] = 'users/register';
 $route['user/([\w]+)']	= 'users/view/$1';
 $route['my-profile']	= 'users/index';
 $route['edit-profile']	= 'users/edit';
+$route['edit-settings']	= 'users/edit';
 
 $route['sitemap.xml'] = 'sitemap/xml';
+
+/* End of file routes.php */
 
 /* End of file routes.php */
